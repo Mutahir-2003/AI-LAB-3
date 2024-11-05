@@ -1,17 +1,14 @@
 package Lab4Task1;
-class Main2 extends Thread { 
-    public void run() { 
-        System.out.println("task one"); 
-    } 
-    
-    public static void main(String args[]) { 
-        Main2 t1 = new Main2();  // Create instance of Main2
-        Main2 t2 = new Main2();  // Create instance of Main2
-        Main2 t3 = new Main2();  // Create instance of Main2
+public class Main2 {
+    public static void main(String[] args) {
+        // Create instances of RollNumberTable and DOBTable
+        RollNumberTable rollNumberTable = new RollNumberTable();
+        DOBTable dobTable = new DOBTable();
         
-        t1.start();  // Start the first thread
-        t2.start();  // Start the second thread
-        t3.start();  // Start the third thread
-    } 
+        // Start both threads simultaneously
+        rollNumberTable.start();
+        dobTable.start();
+    }
 }
+
 
