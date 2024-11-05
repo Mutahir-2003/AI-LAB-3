@@ -1,30 +1,63 @@
 package Lab4Task1;
-class RollNumberTable extends Thread {
+
+class RollNumberThread extends Thread {
+    // Array of student roll numbers
+    String[] rollNumbers = {
+        "2019-SE-095", "2020-SE-102", "2021-SE-105", "2022-SE-110"
+    };
+
+    @Override
     public void run() {
-        // Printing Roll Number table
         System.out.println("Roll Number Table:");
-        System.out.println("-------------------------------------------------");
-        System.out.println("Roll Number | Student Name");
-        System.out.println("-------------------------------------------------");
-        System.out.println("2019-SE-092 | Abdullah Khan");
-        System.out.println("2019-SE-093 | Ahemd");
-        System.out.println("2019-SE-094 | Zia");
-        System.out.println("2019-SE-095 | yasir");
-        System.out.println("-------------------------------------------------");
+        // Print roll numbers
+        for (String rollNumber : rollNumbers) {
+            System.out.println(rollNumber);
+            try {
+                Thread.sleep(500);  // Simulate time taken for processing each item
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+        }
     }
 }
 
-class DOBTable extends Thread {
+class DateOfBirthThread extends Thread {
+    // Array of dates of birth
+    String[] datesOfBirth = {
+        "08-August", "15-July", "22-June", "10-May"
+    };
+
+    @Override
     public void run() {
-        // Printing Date of Birth table
-        System.out.println("Date of Birth Table:");
-        System.out.println("-------------------------------------------------");
-        System.out.println("Roll Number | Date of Birth");
-        System.out.println("-------------------------------------------------");
-        System.out.println("2019-SE-092 | 05-April");
-        System.out.println("2019-SE-093 | 12-May");
-        System.out.println("2019-SE-094 | 23-June");
-        System.out.println("2019-SE-095 | 15-December");
-        System.out.println("-------------------------------------------------");
+        System.out.println("\nDate of Birth Table:");
+        // Print dates of birth
+        for (String dob : datesOfBirth) {
+            System.out.println(dob);
+            try {
+                Thread.sleep(500);  // Simulate time taken for processing each item
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+        }
+    }
+}
+
+public class RollNumberTable {
+    public static void main(String[] args) {
+        // Create instances of both threads
+        RollNumberThread rollNumberThread = new RollNumberThread();
+        DateOfBirthThread dobThread = new DateOfBirthThread();
+        
+        // Start the threads
+        rollNumberThread.start();
+        dobThread.start();
+        
+        try {
+            // Optionally, wait for threads to finish before terminating the main method
+            rollNumberThread.join();
+            dobThread.join();
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
     }
 }
